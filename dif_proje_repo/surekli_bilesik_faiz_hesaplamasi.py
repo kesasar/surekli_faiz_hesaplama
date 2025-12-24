@@ -44,7 +44,7 @@ else: # Yıllık (%) seçiliyse
                                         min_value=0.1, max_value=30.0, 
                                         value=8.0, step=0.1, 
                                         help="Yıllık faiz oranını girin. Örn: 8.0")
-    # HATA DÜZELTİLDİ: Tüm parantezler kontrol edildi.
+  
     r_aylik = (r_girdi_percent / 100) / 12 # Yıllık oranı 12'ye bölerek aylık ondalık oran bulunur
     r_yillik_percent = r_girdi_percent # Yıllık giriş direkt yansıtılır
     
@@ -128,7 +128,7 @@ interest_gained = final_balance - total_invested
 
 # --- GÖRSELLEŞTİRME ---
 
-## Finansal Sonuçlar 💰
+## Finansal Sonuçlar 
 
 st.subheader("Finansal Sonuçlar")
 col1, col2, col3 = st.columns(3)
@@ -137,7 +137,7 @@ col2.metric("Cepten Çıkan Ana Para", f"${total_invested:,.2f}")
 col3.metric("Kazanılan Faiz (Kaldıraç)", f"${interest_gained:,.2f}", delta_color="normal")
 
 
-## Sermayenin Zaman İçindeki Değişimi 📊
+## Sermayenin Zaman İçindeki Değişimi 
 
 st.subheader("Sermayenin Zaman İçindeki Değişimi")
 fig, ax = plt.subplots(figsize=(10, 5))
