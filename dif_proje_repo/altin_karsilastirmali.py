@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-# --- CSS: Sidebar Genişliğini Sabitleme ---
+
 st.markdown(
     """
     <style>
@@ -40,7 +40,7 @@ st.sidebar.markdown("---")
 faiz_orani = st.sidebar.slider("Kıyaslanacak Ortalama Mevduat Faizi (Yıllık %)", 0, 100, 30, 
                                help="Banka faizleri sürekli değiştiği için, bu dönem için 'ortalama' bir oran giriniz.")
 
-# --- VERİ ÇEKME FONKSİYONU (DÜZELTİLMİŞ HALİ) ---
+# --- VERİ ÇEKME FONKSİYONU ---
 @st.cache_data
 def get_data(start, end):
     try:
@@ -56,8 +56,6 @@ def get_data(start, end):
         else:
             df = raw_data.copy()
 
-        # Sütun isimleri bazen (Ticker, Price) bazen düz gelebilir. 
-        # Garantiye almak için sadece ihtiyacımız olanları seçip yeniden adlandıralım.
         # GC=F -> Altın Ons, TRY=X -> Dolar/TL
         
         # Veri setinde bu sütunlar var mı kontrol et
@@ -65,7 +63,7 @@ def get_data(start, end):
             df = df[["GC=F", "TRY=X"]] # Sıralamayı garantiye al
             df.columns = ["Ons_USD", "USD_TRY"] # İsimleri basitleştir
         else:
-            # Bazen yfinance sütunları farklı getirebilir, hata vermemek için boş dön
+            # Hata vermemek için boş dön
             st.error("Veri kaynağından beklenen semboller (GC=F, TRY=X) alınamadı.")
             return pd.DataFrame()
 
