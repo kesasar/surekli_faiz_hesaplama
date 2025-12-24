@@ -1,24 +1,58 @@
-# surekli_faiz_hesaplama
+# Sürekli Faiz ve Tarihsel Yatırım Karşılaştırma Simülasyonları
 
-## Kurulum ve Çalıştırma Rehberi (Windows)
+Bu repository iki farklı finansal simülasyon içerir:
 
-Projeyi bilgisayarınıza indirdikten sonra aşağıdaki adımları izleyin.
+1. **Gerçek tarihsel verilerle Altın vs Mevduat Faizi karşılaştırması**
+2. **Diferansiyel denklemlerle sürekli bileşik faiz modeli**
 
----
-
-## 1. Terminali Doğru Klasörde Açın
-
-i. İndirdiğiniz proje klasörünün içine girin.  
-ii. Dosya gezgininin en üstündeki **adres çubuğuna** tıklayın.  
-iii. Buraya `cmd` yazın ve **Enter** tuşuna basın.  
-
-*(Bu işlem, siyah komut ekranını direkt o klasörün içinde açar.)*
+Uygulamalar **Streamlit** ile geliştirilmiştir ve etkileşimli olarak çalışır.
 
 ---
 
-## 2. Gerekli Kütüphaneleri Yükleyin
+## 📌 İçerik
 
-Açılan siyah ekrana şu komutu yapıştırıp **Enter**’a basın:
+- Gerçek piyasa verileri (Yahoo Finance)
+- Sürekli bileşik faiz modeli (dS/dt = rS + k)
+- Aylık / yıllık faiz ve nakit akışı desteği
+- Grafikler ve özet finansal metrikler
+- Eğitim ve analiz amaçlı finansal simülasyonlar
 
-```bash
-pip install -r requirements.txt
+---
+
+## 🔹 1. Gerçek Tarihsel Verilerle: Altın mı, Faiz mi?
+
+### 📅 Açıklama
+Bu uygulama **tahmini değil**, tamamen **gerçek geçmiş veriler** ile çalışır.
+
+- **Altın (ONS)** → `GC=F`
+- **Dolar/TL** → `TRY=X`
+
+verileri Yahoo Finance üzerinden çekilir ve:
+
+- Başlangıç sermayesi
+- Aylık düzenli yatırım
+- Ortalama mevduat faizi
+
+parametreleriyle **altın yatırımı** ve **mevduat faizi** karşılaştırılır.
+
+### 🧮 Hesaplama Mantığı
+- Altın yatırımı gram bazında tutulur
+- Gram altın TL hesabı:  
+  `(Ons Altın × USD/TRY) / 31.1035`
+- Mevduat faizi günlük bileşik olarak işler
+- Aylık düzenli ekleme her iki yatırım için de uygulanır
+
+### 📈 Çıktılar
+- Toplam yatırılan ana para
+- Altın portföyü değeri
+- Faiz portföyü değeri
+- Hangisinin daha kârlı olduğu
+- Zaman içindeki değişimi gösteren grafik
+
+---
+
+## 🔹 2. Sürekli Bileşik Faiz (Diferansiyel Denklem Modeli)
+
+### 📐 Matematiksel Model
+Bu uygulama aşağıdaki diferansiyel denklemi çözer:
+
